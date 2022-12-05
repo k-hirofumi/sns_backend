@@ -1,12 +1,15 @@
 import { Route, Routes } from "react-router-dom"
 import { MainLayout } from "../layout/MainLayout"
-import { Home } from "../pages/home"
+import { Home } from "../pages/Home"
+import { Login } from "../pages/Login"
+
 
 export const Router = () => {
     return (
         <Routes>
             <Route path="/" element={<MainLayout />} >
                 <Route index element={<Home />} />
+                
                 {/* <Route path="invader" element={<GameLayout />} >
                     <Route index element={<Game1 />} />
                     <Route path="result" element={<Result />} />
@@ -16,7 +19,10 @@ export const Router = () => {
                 <Route path="result" element={<Result />} />
                 <Route path="practice" element={<Practice />} /> */}
             </Route>
-
+            <Route path="/" element={<MainLayout />} >
+                <Route path="/login" element={<Login />} />
+            </Route>
         </Routes>
+        
     )
 }
