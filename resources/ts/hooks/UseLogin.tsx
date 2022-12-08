@@ -7,10 +7,14 @@ export const useLogin = () => {
 
     const login = () => {
         axios.get('/sanctum/csrf-cookie').then(response => {
-            axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/login`).then(response => {
+            axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/login`,{
+                email: 'test@example.com',
+                password: '123456'
+              }).then(response => {
+                    alert("ログインしました。")
                 setHasLogin(true);
-            }).catch(() => {
-            alert('エラー')
+            }).catch((e) => {
+                alert(e)
             }).finally(() => {
 
             })

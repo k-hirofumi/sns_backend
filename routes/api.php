@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\WebApi\LoginController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('/store',[LoginController::class, 'store'])->name('store');
+Route::post('/login',[LoginController::class, 'login'])->name('login');
+Route::get('/logout',[LoginController::class, 'logout'])->name('logout');
+
+
+Route::middleware('auth:sanctum')->group(function(){
+    Route::get('/user', function (Request $request) {
+        Log::debug("RouteSearviceProvider3!!!");
+        return $request->user();
+    });
 });

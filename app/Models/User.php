@@ -45,13 +45,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    const CREATED_AT = 'user_created_at';
-    const UPDATED_AT = 'user_updated_at';
-    const DELETED_AT = 'user_deleted_at';
+    // const CREATED_AT = 'user_created_at';
+    // const UPDATED_AT = 'user_updated_at';
+    // const DELETED_AT = 'user_deleted_at';
 
-    protected $dates = [
-        'user_created_at',
-        'user_updated_at',
-        'user_deleted_at'
-    ];
+    // protected $dates = [
+    //     'user_created_at',
+    //     'user_updated_at',
+    //     'user_deleted_at'
+    // ];
 }
