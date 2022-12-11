@@ -1,9 +1,12 @@
 import axios from "axios"
 import { useState } from "react";
+import { useRecoilState } from "recoil";
+import { loginState } from "../globalStates/loginStateAtom";
 
 export const useLogin = () => {
     
-    const [isLogin, setHasLogin] = useState(false);
+    // const [isLogin, setHasLogin] = useState(false);
+    const [isLogin, setLogin] = useRecoilState(loginState);
 
     const login = () => {
         axios.get('/sanctum/csrf-cookie').then(response => {
@@ -11,8 +14,8 @@ export const useLogin = () => {
                 email: 'test@example.com',
                 password: '123456'
               }).then(response => {
-                    alert("ログインしました。")
-                setHasLogin(true);
+                alert("ログインしました。")
+                setLogin(true);
             }).catch((e) => {
                 alert(e)
             }).finally(() => {

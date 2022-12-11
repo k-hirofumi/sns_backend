@@ -7,8 +7,9 @@ import { Login } from "../pages/Login"
 export const Router = () => {
     return (
         <Routes>
-            <Route path="/" element={<MainLayout />} >
-                <Route index element={<Home />} />
+            <Route path="/" element={<Login />} />
+            {/* <Route path="/" element={<MainLayout />} > */}
+                
                 
                 {/* <Route path="invader" element={<GameLayout />} >
                     <Route index element={<Game1 />} />
@@ -18,9 +19,9 @@ export const Router = () => {
                 <Route path="GamePre1" element={<GamePre1 />} />
                 <Route path="result" element={<Result />} />
                 <Route path="practice" element={<Practice />} /> */}
-            </Route>
+            {/* </Route> */}
             <Route path="/" element={<MainLayout />} >
-                <Route path="/login" element={<Login />} />
+                <Route path="/home" element={<Home />} />
             </Route>
         </Routes>
         

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\WebApi\LoginController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
@@ -23,7 +24,8 @@ Route::get('/logout',[LoginController::class, 'logout'])->name('logout');
 
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('/user', function (Request $request) {
-        Log::debug("RouteSearviceProvider3!!!");
-        return $request->user();
+        // return $request->user();
+        // ログイン済み
+        return Auth::user();
     });
 });
