@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\WebApi;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\Staff;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -24,7 +24,7 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
 
-        $user = User::create([
+        $user = Staff::create([
             'name' =>  $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),

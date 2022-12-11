@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        \App\Models\User::factory(1)->create([
+        \App\Models\Staff::factory(1)->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
             'password' => Hash::make('123456')

@@ -23,6 +23,7 @@ export const Login = () => {
         axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/user`
         ).then(response => {
             alert(response.data)
+            console.log(response.data)
         }).catch((e) => {
             alert(e)
         }).finally(() => {
