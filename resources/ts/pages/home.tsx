@@ -2,6 +2,8 @@ import { Button } from "@chakra-ui/react"
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { useRecoilState } from "recoil"
+import { loginState } from "../globalStates/loginStateAtom"
 import { useGetUser } from "../hooks/loggedIn/UseGetUser"
 
 
@@ -10,8 +12,6 @@ export const Home = () => {
     const {getUser,isLoading, user} = useGetUser();
     useEffect(()=>{
         getUser()
-        console.log(user?.email);
-        
     },[])
 
     return (
