@@ -4,37 +4,50 @@ import { useRecoilState } from "recoil";
 import { loginState } from "../globalStates/loginStateAtom";
 import { isEmpty } from "lodash";
 import { useNavigate } from "react-router-dom";
+import { validator } from "../Utils/Validator";
+import { Login, LOGIN_INPUT } from "../model/input/Login";
 
-type Error = {
-    target: string,
-    message: string
-}
+
 export const useLogin = () => {
     
     const navigate = useNavigate()
     const [isLogin, setLogin] = useRecoilState<boolean>(loginState);
     const [isLoading, setLoading] = useState<boolean>(false)
-    const [errorMessage, setErrorMessage] = useState<Error>({target:"", message:""})
+    const [errorMessage, setErrorMessage] = useState<ErrorMessage>({target:"", message:""})
 
-    const login = (email: string, password: string) => {
+    const login = (props: Login) => {
+        const {email, password} = props;
  
-        //validation
-        if(validator(setErrorMessage, emailValidation(email),'email')) return 
-        if(validator(setErrorMessage, passwordlValidation(password),'password')) return 
+        //バリデーション
+        const valid: Login = {
+            email: ["required","email"],
+            password: ["required"]
+        }
+        if(validator(setErrorMessage, valid, props)) return ;
+
 
         setLoading(true)
         axios.get('/sanctum/csrf-cookie').then(response => {
             axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/login`,{
                 email: email,
                 password: password
-              }).then(response => {
-                // alert("ログインしました。")
+            }).then(response => {
                 setLogin(true);
                 navigate('/home')
             }).catch((e) => {
-                alert(e)
-                console.log(e.response.data.errors)
-                setErrorMessage(e.response?.status)
+                switch (e.response?.status) {
+                    case 420: //バリデーションエラー
+                        if(e.response.data.email ?? null) setErrorMessage({target: LOGIN_INPUT.EMAIL, message: e.response.data.email[0]})
+                        if(e.response.data.password ?? null) setErrorMessage({target: LOGIN_INPUT.PASSWORD, message: e.response.data.password[0]})
+                        break;
+                    case 430: //ログイン情報間違い
+                    case 520: //ログインエラー
+                        setErrorMessage({target: "", message: e.response.data.error})
+                        break;
+                    default:
+                        setErrorMessage({target: "", message: "ログインに失敗しました。再度お試しください"})
+                        break;
+                }
             }).finally(() => {
                 setLoading(false)
             })
@@ -43,21 +56,4 @@ export const useLogin = () => {
     return {login,isLoading,errorMessage}
 }
 
-const emailValidation = (email: string) => {
-    if(email == "") return "メールアドレスが入力されていません。";
-    if(!/\S+@\S+\.\S+/.test(email)) return "メールアドレスの形式が正しくありません。"
-    return ""
-}
-const passwordlValidation = (password: string) => {
-    if(password == "") return "パスワードが入力されていません。";
-    return ""
-}
 
-const validator = (setState:  (value: React.SetStateAction<Error>) => void, value: any, target: string) => {
-    if(value){
-        setState({target:target, message:value})
-    }
-    
-    //errorがあればtrue
-    return isEmpty(value) ? false : true; 
-}
