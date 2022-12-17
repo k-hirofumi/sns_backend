@@ -6,12 +6,14 @@ import { isEmpty } from "lodash";
 import { useNavigate } from "react-router-dom";
 import { validator } from "../Utils/Validator";
 import { Login, LOGIN_INPUT } from "../model/input/Login";
+import { staffInfoState } from "../globalStates/staffInfoStateAtom";
 
 
 export const useLogin = () => {
     
     const navigate = useNavigate()
     const [isLogin, setLogin] = useRecoilState<boolean>(loginState);
+    const [staff,setStaff] = useRecoilState(staffInfoState);
     const [isLoading, setLoading] = useState<boolean>(false)
     const [errorMessage, setErrorMessage] = useState<ErrorMessage>({target:"", message:""})
 
@@ -33,6 +35,7 @@ export const useLogin = () => {
                 password: password
             }).then(response => {
                 setLogin(true);
+                setStaff(response.data as Staff)
                 navigate('/home')
             }).catch((e) => {
                 switch (e.response?.status) {

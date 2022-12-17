@@ -1,5 +1,5 @@
-type User = {
-    user_id: string,
+type Staff = {
+    staff_id: string,
     name: string,
     email: string,
     // email_verified_at: string,

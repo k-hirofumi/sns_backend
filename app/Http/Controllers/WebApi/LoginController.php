@@ -47,7 +47,12 @@ class LoginController extends Controller
                 Log::debug("ログイン成功");
     
                 $request->session()->regenerate();
-                return response()->json(['name' => Auth::user()->email], 200);
+                $staff = Auth::user();
+                return response()->json([
+                    'name' => $staff->name,
+                    'email' => $staff->email,
+                ], 
+                200);
             }
         }catch(Exception $e){
             Log::debug($e->getMessage());

@@ -23,7 +23,10 @@ import {
     FiSettings,
     FiMenu,
 } from 'react-icons/fi';
-import { RiAliensLine } from "react-icons/ri"
+import { AiOutlineHome } from "react-icons/ai"
+import { HiAnnotation } from "react-icons/hi"
+import { HiOutlineCursorClick } from "react-icons/hi"
+import { BsPersonCircle } from "react-icons/bs"
 import { TbPacman } from "react-icons/tb"
 import { IconType } from 'react-icons';
 import { ReactText } from 'react';
@@ -34,16 +37,17 @@ interface LinkItemProps {
     link: string;
 }
 const LinkItems: Array<LinkItemProps> = [
-    { name: 'アカウント管理', icon: RiAliensLine, link: "account" },
-    { name: 'ユーザ管理', icon: TbPacman, link: "user" },
-    { name: '広告', icon: TbPacman, link: "advertisement" },
-    { name: 'お知らせ', icon: TbPacman, link: "notification" },
+    { name: 'ホーム', icon: AiOutlineHome, link: "/home" },
+    { name: 'スタッフ管理', icon: BsPersonCircle, link: "account" },
+    { name: 'ユーザ管理', icon: BsPersonCircle, link: "user" },
+    { name: '広告', icon: HiOutlineCursorClick, link: "HiAnnotation" },
+    { name: 'お知らせ', icon: HiAnnotation, link: "HiAnnotation" },
 ];
 
 export function Sidebar({ children }: { children: ReactNode }) {
     const { isOpen, onOpen, onClose } = useDisclosure();
     return (
-        <Flex minH="90vh" bg={useColorModeValue('gray.100', 'gray.900')} >
+        <Flex minH="90vh" bg="white" >
             <SidebarContent
                 onClose={() => onClose}
                 display={{ base: 'none', md: 'inline-block' }}
@@ -79,7 +83,8 @@ interface SidebarProps extends BoxProps {
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
     return (
         <Box
-            bg={useColorModeValue('white', 'gray.900')}
+            // bg={useColorModeValue('white', 'gray.900')}
+            bg="gray.100"
             borderRight="1px"
             borderRightColor={useColorModeValue('gray.200', 'gray.700')}
             w={{ base: 'full', md: 60 }}

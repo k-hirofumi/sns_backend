@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom"
 import { useRecoilState } from "recoil";
 import { loginState } from "../../globalStates/loginStateAtom";
-import { userState } from "../../globalStates/userStateAtom";
+import { userState } from "../../globalStates/userInfoStateAtom";
 
 export const useGetUser = () => {
     const [user,setUser] = useRecoilState(userState);
