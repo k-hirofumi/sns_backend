@@ -14,10 +14,8 @@ export const useGetUser = () => {
     const getUser = () => {
         axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/user`
         ).then(response => {
-            alert(response.data)
             setLoading(false)
             setUser(response.data)
-                const [isLogin] = useRecoilState(loginState);
         }).catch((e) => {
             e.response?.status == 401 && navigate('/')
         }).finally(() => {

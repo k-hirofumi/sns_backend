@@ -1,21 +1,26 @@
+import { Flex, Spinner } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom"
 import { useRecoilState } from "recoil";
 import { loginState } from "../globalStates/loginStateAtom";
+import { useGetStaff } from "../hooks/loggedIn/UseGetStaff";
 import { Header } from "./Header";
 import { Sidebar } from "./Sidebar"
 
 export const MainLayout = () => {
     //ログイン状態を判定
-    const navigate = useNavigate()
-    const [isLogin] = useRecoilState(loginState);
+    const [isLogin, setLogin] = useRecoilState(loginState);
+    const {getStaff,isLoading} = useGetStaff()
     useEffect(()=>{
-        !isLogin && navigate('/')
+        if(!isLogin) {
+            getStaff()
+            setLogin(true)
+        } 
     })
     
     return (
         <>
-            {isLogin 
+            {isLogin || !isLoading
                 ?
                 <>
                     <Header />
@@ -23,9 +28,10 @@ export const MainLayout = () => {
                         <Outlet/>
                     </Sidebar>
                 </>
-
                 : 
-                <div></div>
+                <Flex align="center" justify="center" height="100vh">
+                    <Spinner />
+                </Flex>
 
             }
         </>

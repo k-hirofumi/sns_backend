@@ -23,9 +23,11 @@ Route::get('/logout',[LoginController::class, 'logout'])->name('logout');
 
 
 Route::middleware('auth:sanctum')->group(function(){
-    Route::get('/user', function (Request $request) {
-        // return $request->user();
-        // ログイン済み
-        return Auth::user();
-    });
+    // Route::get('/user', function (Request $request) {
+    //     // return $request->user();
+    //     // ログイン済み
+    //     return Auth::user();
+    // });
+    Route::get('/staff',[LoginController::class, 'staff'])->name('staff');
+
 });

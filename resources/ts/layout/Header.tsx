@@ -22,12 +22,14 @@ import {
 import { BsPersonBadge } from "react-icons/bs"
 import { staffInfoState } from '../globalStates/staffInfoStateAtom';
 import { useRecoilState } from 'recoil';
+import { useLogout } from '../hooks/UseLogout';
 
 export function Header() {
     const { isOpen, onToggle } = useDisclosure();
     const [staff] = useRecoilState(staffInfoState);
+    const {logout} = useLogout();
     const onLogout = () => {
-
+        logout()
     }
 
     return (

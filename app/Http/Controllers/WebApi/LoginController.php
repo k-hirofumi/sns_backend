@@ -76,4 +76,15 @@ class LoginController extends Controller
     
         return response()->json(true);
     }
+
+    /**
+     * @param  Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function staff(Request $request)
+    {
+        // return $request->user();
+        // ログイン済み
+        return Auth::user();
+    }
 }
