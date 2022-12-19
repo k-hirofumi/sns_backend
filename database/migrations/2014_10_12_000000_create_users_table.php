@@ -23,13 +23,15 @@ return new class extends Migration
             // $table->timestamp('email_verified_at')->nullable();
             // $table->string('password');
             // $table->rememberToken();
-            $table->id();
+            $table->uuid('user_id')->primary();
+            $table->timestampTz('user_created_at')->nullable();
+            $table->timestampTz('user_updated_at')->nullable();
+            $table->timestampTz('user_deleted_at')->nullable();
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->timestamps();
         });
     }
 

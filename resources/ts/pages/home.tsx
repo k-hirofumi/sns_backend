@@ -10,9 +10,9 @@ import { loginState } from "../globalStates/loginStateAtom"
 export const Home = () => {
     const navigate = useNavigate()
     // const {getUser,isLoading, user} = useGetUser();
-    useEffect(()=>{
-        // getUser()
-    },[])
+    // useEffect(()=>{
+    //     // getUser()
+    // },[])
 
     return (
         <>

@@ -30,7 +30,7 @@ export const useLogin = () => {
 
         setLoading(true)
         axios.get('/sanctum/csrf-cookie').then(response => {
-            axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/login`,{
+            axios.post(`${import.meta.env.VITE_API_BASE_URL}/login`,{
                 email: email,
                 password: password
             }).then(response => {

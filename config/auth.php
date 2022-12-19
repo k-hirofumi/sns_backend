@@ -40,6 +40,13 @@ return [
             'driver' => 'session',
             'provider' => 'staffs',
         ],
+
+        //マルチログインではguardを追加する必要があるが、sanctumでは必要ない
+        // 'api' => [
+        //     'driver' => 'session',
+        //     'provider' => 'users',
+        //     'hash' => false,
+        // ],
     ],
 
     /*
@@ -66,8 +73,8 @@ return [
         ],
 
         // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
+        //     'driver' => 'eloquent',
+        //     'model' => App\Models\User::class,
         // ],
     ],
 
@@ -93,6 +100,12 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
+        // 'users' => [
+        //     'provider' => 'users',
+        //     'table' => 'password_resets',
+        //     'expire' => 60,
+        //     'throttle' => 60,
+        // ],
     ],
 
     /*

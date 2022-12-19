@@ -11,7 +11,7 @@ export const useGetStaff = () => {
     const navigate = useNavigate()
 
     const getStaff = () => {
-        axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/staff`
+        axios.get(`${import.meta.env.VITE_API_BASE_URL}/staff`
         ).then(response => {
             setStaff(response.data)
         }).catch((e) => {

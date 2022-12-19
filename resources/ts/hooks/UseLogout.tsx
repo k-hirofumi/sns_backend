@@ -10,7 +10,7 @@ export const useLogout = () => {
     const navigate = useNavigate();
 
     const logout = () => {
-        axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/logout`
+        axios.get(`${import.meta.env.VITE_API_BASE_URL}/logout`
         ).then(response => {
             setLogin(false)
             navigate("/")

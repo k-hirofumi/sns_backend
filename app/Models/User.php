@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -10,10 +11,14 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, Uuids;
 
     // テーブル名
     protected $table = 'users';
+
+    // プリマリーキー
+    protected $primaryKey = 'user_id';
+
 
     /**
      * The attributes that are mass assignable.
@@ -45,13 +50,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // const CREATED_AT = 'user_created_at';
-    // const UPDATED_AT = 'user_updated_at';
-    // const DELETED_AT = 'user_deleted_at';
+    const CREATED_AT = 'user_created_at';
+    const UPDATED_AT = 'user_updated_at';
+    const DELETED_AT = 'user_deleted_at';
 
-    // protected $dates = [
-    //     'user_created_at',
-    //     'user_updated_at',
-    //     'user_deleted_at'
-    // ];
+    protected $dates = [
+        'user_created_at',
+        'user_updated_at',
+        'user_deleted_at'
+    ];
 }

@@ -12,7 +12,7 @@ export const useGetUser = () => {
     const navigate = useNavigate()
 
     const getUser = () => {
-        axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/user`
+        axios.get(`${import.meta.env.VITE_API_BASE_URL}/user`
         ).then(response => {
             setLoading(false)
             setUser(response.data)
