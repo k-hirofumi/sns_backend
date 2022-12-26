@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\AppApi;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AppApi\Login\LoginApiRequest;
+use App\Http\Requests\AppResponse\AppErrorResponse;
 use App\Http\Requests\Login\LoginRequest;
 use App\Models\Staff;
 use App\Models\User;
@@ -41,23 +43,27 @@ class AppLoginController extends Controller
         ]);
     }
 
-    public function login(Request $request)
+    public function login(LoginApiRequest $request)
     {
-        $validated = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-            'device_name' => 'required',
-        ]);
+        // $validated = $request->validate([
+        //     'email' => 'required|email',
+        //     'password' => 'required',
+        //     // 'device_name' => 'required',
+        // ]);
 
         $user = User::where('email', $request->email)->first();
   
         if (! $user || ! Hash::check($request->password, $user->password)) {
-            throw ValidationException::withMessages([
-                'email' => ['The provided credentials are incorrect.'],
-            ]);
+            // throw ValidationException::withMessages([
+            //     'email' => ['The provided credentials are incorrect.'],
+            // ]);
+            return (new AppErrorResponse(1002,'不明なユーザー'))->toJson();
         }
     
-        return $user->createToken($request->device_name)->plainTextToken;
+        $accessToken = $user->createToken($user->user_id)->plainTextToken;
+        return response()->json([
+            'access_token' => $accessToken,
+        ]);
     }
 
     // /**

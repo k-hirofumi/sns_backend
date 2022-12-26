@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\WebApi;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Login\LoginRequest;
+use App\Http\Requests\WebApi\Login\LoginRequest;
 use App\Models\Staff;
 use Exception;
 use Illuminate\Http\Exceptions\HttpResponseException;
