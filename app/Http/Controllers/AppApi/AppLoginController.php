@@ -57,9 +57,10 @@ class AppLoginController extends Controller
             // throw ValidationException::withMessages([
             //     'email' => ['The provided credentials are incorrect.'],
             // ]);
-            return (new AppErrorResponse(1002,'不明なユーザー'))->toJson();
+            return (new AppErrorResponse(1002,'不明なユーザー','メールアドレスまたはパスワードが正しくありません'))->toJson();
         }
     
+        //ユーザIDからアクセストークンを生成（personal_access_tokenテーブルのnamenにユーザIDが登録される）
         $accessToken = $user->createToken($user->user_id)->plainTextToken;
         return response()->json([
             'access_token' => $accessToken,

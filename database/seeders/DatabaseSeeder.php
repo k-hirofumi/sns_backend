@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'user1@example.com',
             'password' => Hash::make('123456'),
-            'remember_token' => Str::random(10),
+            // 'remember_token' => Str::random(10),
         ]);
     }
 }

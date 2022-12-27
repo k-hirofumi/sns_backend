@@ -35,7 +35,7 @@ class LoginApiRequest extends FormRequest
 
     protected function failedValidation( Validator $validator ){
         $response  = $validator->errors()->toArray();
-        throw new HttpResponseException((new AppErrorResponse(1001,'入力エラー'))->toJson());
+        throw new HttpResponseException((new AppErrorResponse(1001,'メールアドレスまたはパスワードの形式が正しくありません'))->toJson());
         // return (new AppErrorResponse(1001,'validation_error'))->toJson();
     }
 }

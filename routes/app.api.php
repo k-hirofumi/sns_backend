@@ -25,13 +25,13 @@ Route::post('/register', [AppLoginController::class, 'register']);
 Route::post('/login', [AppLoginController::class, 'login']);
 
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::middleware(['accessTokenVerified'])->get('/user', function (Request $request) {
     // return (new AppErrorResponse(499,'テストエラー'))->toJson();
     // return response()->json([
     //     'code' => 499,
     //     'message' => 'テストエラー',
     // ]);
-    return $request->user();
+    return $request->user;
 });
 
 
