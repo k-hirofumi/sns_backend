@@ -43,9 +43,7 @@ class LoginController extends Controller
     public function login(LoginRequest $request): JsonResponse
     {
         try{
-            if (Auth::attempt($request->validated())) {
-                Log::debug("ログイン成功");
-    
+            if (Auth::attempt($request->validated())) {    
                 $request->session()->regenerate();
                 $staff = Auth::user();
                 return response()->json([
@@ -55,7 +53,6 @@ class LoginController extends Controller
                 200);
             }
         }catch(Exception $e){
-            Log::debug($e->getMessage());
             throw new HttpResponseException( response()->json( ['error' => 'ログインに失敗しました。再度お試しください'], 520 ));
         }
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\AppApi;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\AppApi\Login\LoginApiRequest;
+use App\Http\Requests\AppApi\Login\LoginAppRequest;
 use App\Http\Requests\AppResponse\AppErrorResponse;
 use App\Http\Requests\Login\LoginRequest;
 use App\Models\Staff;
@@ -19,7 +19,7 @@ use Illuminate\Validation\ValidationException;
 use \Symfony\Component\HttpFoundation\Response;
 
 
-class AppLoginController extends Controller
+class LoginAppController extends Controller
 {
     public function register(Request $request)
     {
@@ -43,7 +43,7 @@ class AppLoginController extends Controller
         ]);
     }
 
-    public function login(LoginApiRequest $request)
+    public function login(LoginAppRequest $request)
     {
         // $validated = $request->validate([
         //     'email' => 'required|email',

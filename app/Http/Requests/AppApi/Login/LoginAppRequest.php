@@ -8,7 +8,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Support\Facades\Log;
 
-class LoginApiRequest extends FormRequest
+class LoginAppRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
