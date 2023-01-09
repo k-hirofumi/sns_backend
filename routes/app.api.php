@@ -40,6 +40,7 @@ Route::middleware(['accessTokenVerified'])->group(function(){
 
     Route::get('/get_user', [AccountAppController::class, 'getUser']);
     Route::post('/new_post', [PostAppController::class, 'newPost']);
+    Route::get('/get_post', [PostAppController::class, 'getPost']);
 
 });
 
